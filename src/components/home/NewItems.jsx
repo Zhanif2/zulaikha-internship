@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -18,6 +20,73 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
+
+
+  function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <button
+        className={`arrow-button ${className}`}
+        style={style}
+        onClick={onClick}
+      >
+        <i className="fa fa-chevron-left icon-left"></i>
+      </button>
+    );
+  }
+
+  function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <button
+        className={`arrow-button ${className}`}
+        style={style}
+        onClick={onClick}
+      >
+        <i className="fa fa-chevron-right icon-right"></i>
+      </button>
+    );
+  }
+
+  const settings = {
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+
+        },
+      },
+    ],
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -28,8 +97,9 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <Slider {...settings}>
           {newItems.map((item, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -84,6 +154,7 @@ const NewItems = () => {
               </div>
             </div>
           ))}
+          </Slider>
         </div>
       </div>
     </section>

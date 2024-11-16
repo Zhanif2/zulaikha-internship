@@ -2703,7 +2703,7 @@ address span strong {
 .small-border {
   width: 50px;
   height: 2px;
-  background: rgba(0, 0, 0, 0.5);
+  background: #8364e2;
   border-left: none;
   border-right: none;
   display: block;
@@ -10714,6 +10714,12 @@ i.big {
 }
 
 
+.col-lg-12, .col-md-12, .col-sm-12{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+
 .slick-slide {
   padding: 0 5px;
 }
@@ -10767,7 +10773,6 @@ i.big {
   transform: translate(-5px, -25px);
 
 }
-
 
 
 
