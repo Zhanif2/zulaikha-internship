@@ -151,8 +151,6 @@ const NewItems = () => {
                       <Countdown expiryDate={item.expiryDate} />
                     </div>
                   )}
-
-
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
                       <div className="nft__item_buttons">

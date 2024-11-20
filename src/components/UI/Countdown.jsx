@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 function Countdown({ expiryDate }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeRemaining);
 
-  // Function to calculate time remaining
   function calculateTimeRemaining() {
     const millisLeft = new Date(expiryDate) - Date.now();
     if (millisLeft <= 0) return null;
@@ -21,7 +20,7 @@ function Countdown({ expiryDate }) {
       setTimeLeft(updatedTime);
     }, 1000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval); 
   }, [expiryDate]);
 
   return <>{timeLeft ? timeLeft : "Expired"}</>;
