@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "../UI/Skeleton";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -22,6 +23,7 @@ const NewItems = () => {
 
     fetchNewItems();
   }, []);
+
 
   function PrevArrow(props) {
     const { className, style, onClick } = props;
@@ -144,7 +146,12 @@ const NewItems = () => {
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
-                  <div className="de_countdown">5h 30m 32s</div>
+                  {item.expiryDate && (
+                    <div className="de_countdown">
+                      <Countdown expiryDate={item.expiryDate} />
+                    </div>
+                  )}
+
 
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
