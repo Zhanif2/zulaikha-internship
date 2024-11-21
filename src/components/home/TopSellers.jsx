@@ -5,11 +5,16 @@ import axios from "axios";
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
 
-  useEffect(() =>{
-    axios. get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`).then((response) => {
+  useEffect(() => {
+    const fetchTopSellers = async () => {
+      const response = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+      );
       setTopSellers(response.data);
-    })
-  },[])
+    };
+
+    fetchTopSellers();
+  }, []);
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -35,7 +40,9 @@ const TopSellers = () => {
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to={`/author/${item.authorId}`}>{item.authorName}</Link>
+                    <Link to={`/author/${item.authorId}`}>
+                      {item.authorName}
+                    </Link>
                     <span>{item.price} ETH</span>
                   </div>
                 </li>
