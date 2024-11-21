@@ -6,85 +6,24 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../../css/styles/style.css';
 import Skeleton from '../UI/Skeleton';
+import { sliderSettings } from '../UI/SliderSettings';
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCollections = async () => {
-      setIsLoading(true); 
+      setIsLoading(true);
       const { data } = await axios.get(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
       );
       setCollections(data);
-      setIsLoading(false); 
+      setIsLoading(false);
     };
 
     fetchCollections();
   }, []);
-
-  function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <button
-        className={`arrow-button ${className}`}
-        style={style}
-        onClick={onClick}
-      >
-        <i className="fa fa-chevron-left icon-left"></i>
-      </button>
-    );
-  }
-
-  function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <button
-        className={`arrow-button ${className}`}
-        style={style}
-        onClick={onClick}
-      >
-        <i className="fa fa-chevron-right icon-right"></i>
-      </button>
-    );
-  }
-
-  const settings = {
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,
-    dots: false,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-  };
 
   return isLoading ? (
     <section id="section-collections" className="no-bottom">
@@ -132,7 +71,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Slider {...settings}>
+          <Slider {...sliderSettings}>
             {collections.map((item, index) => (
               <div className="item" key={index}>
                 <div className="nft_coll">
