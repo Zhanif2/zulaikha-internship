@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
 import NftCard from "../UI/NftCard"; 
 
 const ExploreItems = () => {
@@ -37,7 +38,7 @@ const ExploreItems = () => {
                 className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 style={{ display: "block" }}
               >
-                <NftCard loading={true} /> 
+                <Skeleton width="100%" height="400px" />
               </div>
             ))
           : exploreItems.map((item, index) => (
@@ -47,7 +48,6 @@ const ExploreItems = () => {
                 style={{ display: "block" }}
               >
                 <NftCard
-                  loading={false} 
                   nftId={item.nftId}
                   nftImage={item.nftImage}
                   title={item.title}
