@@ -138,6 +138,7 @@ const Author = () => {
                   <AuthorItems
                     nftCollection={author.nftCollection}
                     authorImage={author.authorImage}
+                    authorId={author.authorId}
                   />
                 </div>
               </div>

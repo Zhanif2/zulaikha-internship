@@ -2,7 +2,7 @@ import React from "react";
 import Skeleton from "../UI/Skeleton";
 import NftCard from "../UI/NftCard"; 
 
-const AuthorItems = ({ isLoading, nftCollection, authorImage }) => {
+const AuthorItems = ({ isLoading, nftCollection, authorImage, authorId }) => {
   return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -25,7 +25,7 @@ const AuthorItems = ({ isLoading, nftCollection, authorImage }) => {
                     price={nft.price}
                     likes={nft.likes}
                     authorImage={authorImage}
-                    authorId={nft.authorId} 
+                    authorId={authorId}  
                     expiryDate={nft.expiryDate} 
                   />
                 </div>
