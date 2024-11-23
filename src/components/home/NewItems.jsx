@@ -24,38 +24,7 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
-  return isLoading ? (
-    <section id="section-items" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="nft__item_wrap">
-                  <Skeleton width="100%" height="300px" borderRadius="8px" />
-                </div>
-                <div className="nft__item_info">
-                  <Skeleton width="180px" height="30px" />
-                  <div className="nft__item_price">
-                    <Skeleton width="100px" height="20px" />
-                  </div>
-                  <div className="nft__item_like">
-                    <Skeleton width="30px" height="15px" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  ) : (
+  return (
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -66,19 +35,32 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...sliderSettings}> 
-            {newItems.map((item, index) => (
-              <div key={index} className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <NftCard
-                  nftId={item.nftId}
-                  title={item.title}
-                  price={item.price}
-                  likes={item.likes}
-                  nftImage={item.nftImage}
-                  expiryDate={item.expiryDate} 
-                  authorImage={item.authorImage}
-                />
-              </div>
-            ))}
+            {isLoading
+              ? new Array(4).fill(0).map((_, index) => (
+                  <div
+                    key={index}
+                    className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                  >
+                    <NftCard loading={true} />
+                  </div>
+                ))
+              : newItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                  >
+                    <NftCard
+                      loading={false}
+                      nftId={item.nftId}
+                      title={item.title}
+                      price={item.price}
+                      likes={item.likes}
+                      nftImage={item.nftImage}
+                      expiryDate={item.expiryDate} 
+                      authorImage={item.authorImage}
+                    />
+                  </div>
+                ))}
           </Slider>
         </div>
       </div>
