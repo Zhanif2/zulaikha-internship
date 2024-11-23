@@ -10,12 +10,13 @@ const NftCard = ({
   likes,
   expiryDate,
   authorImage,
+  authorId,
 }) => {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
         <Link
-          to="/author"
+          to={`/author/${authorId}`}
           data-bs-toggle="tooltip"
           data-bs-placement="top"
           title="Creator"
