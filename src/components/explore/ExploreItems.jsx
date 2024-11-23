@@ -1,27 +1,42 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import NftCard from "../UI/NftCard"; 
+import NftCard from "../UI/NftCard";
 import Skeleton from "../UI/Skeleton";
-
 
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
-  const [count, setCount] = useState(2); 
+  const [count, setCount] = useState(2);
   const [isLoading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState("Default");
 
+  const explore_API =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
 
-  const explore_API = "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+  const filterUrl = () => {
+    let url = explore_API;
+
+    if (filter === "price_low_to_high") {
+      url += "?filter=price_low_to_high";
+    } else if (filter === "price_high_to_low") {
+      url += "?filter=price_high_to_low";
+    } else if (filter === "likes_high_to_low") {
+      url += "?filter=likes_high_to_low";
+    }
+
+    return url;
+  };
+
+  const fetchExploreItems = async () => {
+    setIsLoading(true);
+    const url = filterUrl();
+    const { data } = await axios.get(url);
+    setExploreItems(data);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchExploreItems = async () => {
-      setIsLoading(true);
-      const { data } = await axios.get(explore_API);
-      setExploreItems(data);
-      setIsLoading(false);
-    };
-
     fetchExploreItems();
-  }, []);
+  }, [filter]);
 
   const loadMoreItems = () => {
     setCount((prevCount) => prevCount + 1);
@@ -30,11 +45,15 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
+        <select
+          id="filter-items"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="Default">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
-          <option value="likes_high_to_low">Most liked</option>
+          <option value="likes_high_to_low">Most Liked</option>
         </select>
       </div>
 
