@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
 
@@ -9,6 +9,8 @@ const Author = () => {
   const { authorId } = useParams();
   const [author, setAuthor] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followersCount, setFollowersCount] = useState(0);
 
   useEffect(() => {
     const fetchAuthorData = async () => {
@@ -17,6 +19,7 @@ const Author = () => {
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
       );
       setAuthor(response.data);
+      setFollowersCount(response.data.followers); 
       setIsLoading(false);
     };
 
@@ -24,6 +27,14 @@ const Author = () => {
       fetchAuthorData();
     }
   }, [authorId]);
+
+
+  const toggleFollow = async () => {
+    const newFollowing = !isFollowing;
+    setIsFollowing(newFollowing);
+    setFollowersCount((prevCount) => prevCount + (newFollowing ? 1 : -1));
+  };
+  
 
   if (isLoading) {
     return (
@@ -35,8 +46,7 @@ const Author = () => {
             aria-label="section"
             className="text-light"
             style={{ background: `url(${AuthorBanner}) top` }}
-          >
-          </section>
+          ></section>
           <section aria-label="section">
             <div className="container">
               <div className="row">
@@ -44,11 +54,7 @@ const Author = () => {
                   <div className="d_profile de-flex">
                     <div className="de-flex-col">
                       <div className="profile_avatar">
-                        <Skeleton
-                          width="140px"
-                          height="140px"
-                          borderRadius="50%"
-                        />
+                        <Skeleton width="140px" height="140px" borderRadius="50%" />
                       </div>
                       <div className="profile_name">
                         <h4>
@@ -64,16 +70,11 @@ const Author = () => {
                     </div>
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
-                        <Skeleton
-                          width="160px"
-                          height="40px"
-                          borderRadius="5px"
-                        />
+                        <Skeleton width="160px" height="40px" borderRadius="5px" />
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
                     <AuthorItems isLoading={isLoading} />
@@ -86,6 +87,7 @@ const Author = () => {
       </div>
     );
   }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -96,8 +98,7 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           style={{ background: `url(${AuthorBanner}) top` }}
-        >
-        </section>
+        ></section>
         <section aria-label="section">
           <div className="container">
             <div className="row">
@@ -123,11 +124,11 @@ const Author = () => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">
-                        {author.followers} followers
+                        {followersCount} followers
                       </div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <button className="btn-main" onClick={toggleFollow}>
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
                 </div>
