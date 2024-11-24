@@ -13407,7 +13407,13 @@ a.read_more i {
 .author_list_info {
   font-weight: bold;
   padding-left: 70px;
+  transition: all ease 300ms;
 }
+
+.author_list_info:hover a:hover{
+  color: #8364e2;
+}
+
 
 .rtl .author_list_info {
   padding-left: 0;
