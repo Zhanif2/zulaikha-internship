@@ -20,7 +20,7 @@ const AuthorItems = ({ isLoading, nftCollection, authorImage, authorId }) => {
                 >
                   <NftCard
                     nftImage={nft.nftImage}
-                    nftId={nft.id}
+                    nftId={nft.nftId}
                     title={nft.title}
                     price={nft.price}
                     likes={nft.likes}
