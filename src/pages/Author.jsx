@@ -15,11 +15,11 @@ const Author = () => {
   useEffect(() => {
     const fetchAuthorData = async () => {
       setIsLoading(true);
-      const response = await axios.get(
+      const {data} = await axios.get(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
       );
-      setAuthor(response.data);
-      setFollowersCount(response.data.followers); 
+      setAuthor(data);
+      setFollowersCount(data.followers); 
       setIsLoading(false);
     };
 
