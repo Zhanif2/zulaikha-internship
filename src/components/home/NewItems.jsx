@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "../UI/Skeleton"; 
 import { sliderSettings } from "../UI/SliderSettings";
 import NftCard from "../UI/NftCard";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -27,7 +28,7 @@ const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>

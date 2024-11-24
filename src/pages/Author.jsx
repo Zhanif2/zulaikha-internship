@@ -4,7 +4,7 @@ import AuthorItems from "../components/author/AuthorItems";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
-
+//any comment
 const Author = () => {
   const { authorId } = useParams();
   const [author, setAuthor] = useState({});
@@ -15,11 +15,11 @@ const Author = () => {
   useEffect(() => {
     const fetchAuthorData = async () => {
       setIsLoading(true);
-      const {data} = await axios.get(
+      const { data } = await axios.get(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
       );
       setAuthor(data);
-      setFollowersCount(data.followers); 
+      setFollowersCount(data.followers);
       setIsLoading(false);
     };
 
@@ -28,13 +28,11 @@ const Author = () => {
     }
   }, [authorId]);
 
-
   const toggleFollow = async () => {
     const newFollowing = !isFollowing;
     setIsFollowing(newFollowing);
     setFollowersCount((prevCount) => prevCount + (newFollowing ? 1 : -1));
   };
-  
 
   if (isLoading) {
     return (
@@ -54,7 +52,11 @@ const Author = () => {
                   <div className="d_profile de-flex">
                     <div className="de-flex-col">
                       <div className="profile_avatar">
-                        <Skeleton width="140px" height="140px" borderRadius="50%" />
+                        <Skeleton
+                          width="140px"
+                          height="140px"
+                          borderRadius="50%"
+                        />
                       </div>
                       <div className="profile_name">
                         <h4>
@@ -70,7 +72,11 @@ const Author = () => {
                     </div>
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
-                        <Skeleton width="160px" height="40px" borderRadius="5px" />
+                        <Skeleton
+                          width="160px"
+                          height="40px"
+                          borderRadius="5px"
+                        />
                       </div>
                     </div>
                   </div>
@@ -107,6 +113,7 @@ const Author = () => {
                   <div className="de-flex-col">
                     <div className="profile_avatar">
                       <img src={author.authorImage} alt="Author" />
+                      <i className="fa fa-check"></i>
                     </div>
                     <div className="profile_name">
                       <h4>

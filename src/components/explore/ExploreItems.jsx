@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NftCard from "../UI/NftCard";
 import Skeleton from "../UI/Skeleton";
+import "aos/dist/aos.css";
 
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
@@ -44,6 +45,7 @@ const ExploreItems = () => {
 
   return (
     <>
+    <div className="container" data-aos="fade-up">
       <div>
         <select
           id="filter-items"
@@ -94,6 +96,7 @@ const ExploreItems = () => {
           </button>
         </div>
       )}
+      </div>
     </>
   );
 };
