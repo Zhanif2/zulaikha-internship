@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -23,7 +24,7 @@ const TopSellers = () => {
   return isLoading ? (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>
@@ -54,7 +55,7 @@ const TopSellers = () => {
   ) : (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>

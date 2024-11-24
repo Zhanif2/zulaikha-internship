@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import '../../css/styles/style.css';
 import Skeleton from '../UI/Skeleton';
 import { sliderSettings } from '../UI/SliderSettings';
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -28,7 +29,7 @@ const HotCollections = () => {
   return isLoading ? (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
@@ -64,7 +65,7 @@ const HotCollections = () => {
   ) : (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
