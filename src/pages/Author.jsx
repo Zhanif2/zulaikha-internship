@@ -4,7 +4,6 @@ import AuthorItems from "../components/author/AuthorItems";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
-//any comment
 const Author = () => {
   const { authorId } = useParams();
   const [author, setAuthor] = useState({});

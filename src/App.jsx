@@ -15,7 +15,7 @@ function App() {
       duration: 1000,
       easing: "ease-in-out", 
       offset: 100, 
-      once: false, 
+      once: true, 
     });
     AOS.refresh();
 
